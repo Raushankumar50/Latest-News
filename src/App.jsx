@@ -10,16 +10,16 @@ function App() {
   const [newsData, setNewsData] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const API_KEY = "ecfb5d876e464091a77bcbd5f6956427";
+  // const API_KEY = "ecfb5d876e464091a77bcbd5f6956427";
+
+  const API_URL = "/api/news";
 
   const getData = async (query = search) => {
     try {
       setLoading(true);
-      const response = await fetch(
-        `https://newsapi.org/v2/everything?q=${query}&apiKey=${API_KEY}`
-      );
+      const response = await fetch(`${API_URL}?q=${query}`);
       const jsonData = await response.json();
-      const dt = jsonData.articles.slice(0, 12);
+      const dt = jsonData.articles?.slice(0, 12) || [];
       setNewsData(dt);
     } catch (err) {
       console.error("API error:", err);
