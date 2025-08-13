@@ -19,7 +19,7 @@ function App() {
         `https://newsapi.org/v2/everything?q=${query}&apiKey=${API_KEY}`
       );
       const jsonData = await response.json();
-      const dt = jsonData.articles.slice(0, 10);
+      const dt = jsonData.articles.slice(0, 12);
       setNewsData(dt);
     } catch (err) {
       console.error("API error:", err);
